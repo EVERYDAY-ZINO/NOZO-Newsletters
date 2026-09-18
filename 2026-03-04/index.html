@@ -3,351 +3,523 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>한국전력기술 노동조합 소식지 · 2026년 3·4월호</title>
+<title>한전기술 노조소식 · 한국전력기술 노동조합 소식지</title>
+
 <style>
   :root {
-    --navy: #16305c;
-    --navy-deep: #0e1f3d;
-    --gold: #d6a028;
-    --bg: #f4f5f7;
-    --card: #ffffff;
-    --text: #1f2430;
-    --muted: #6b7280;
-    --border: #e4e6ec;
+    --ink: #1b2430;
+    --ink-soft: #4a5568;
+    --paper: #eceef1;
+    --surface: #ffffff;
+    --navy: #234873;
+    --navy-deep: #12233d;
+    --gold: #a8763a;
+    --line: #d7dbe2;
+    --tag-bg: #e4e9f1;
+    color-scheme: light dark;
   }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #e7eaf0;
+      --ink-soft: #a7b0c0;
+      --paper: #10151d;
+      --surface: #161c26;
+      --navy: #7fa1cf;
+      --navy-deep: #b9cbe6;
+      --gold: #d6a664;
+      --line: #2a323f;
+      --tag-bg: #202a38;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #e7eaf0;
+    --ink-soft: #a7b0c0;
+    --paper: #10151d;
+    --surface: #161c26;
+    --navy: #7fa1cf;
+    --navy-deep: #b9cbe6;
+    --gold: #d6a664;
+    --line: #2a323f;
+    --tag-bg: #202a38;
+  }
+
   * { box-sizing: border-box; }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
+    background: var(--paper);
+    color: var(--ink);
     font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    line-height: 1.7;
+    line-height: 1.75;
+    padding-inline: 0;
   }
-  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px 60px; }
+  .page { max-width: 720px; margin: 0 auto; padding: 0 20px 72px; }
 
-  header.masthead {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
-    color: #fff;
-    padding: 48px 20px 40px;
-    text-align: center;
+  /* ---- masthead ---- */
+  .masthead-band {
+    background: var(--navy-deep);
+    color: #f4f6fa;
+    padding-block: 28px;
+    padding-inline: 20px;
   }
-  header.masthead .eyebrow {
-    letter-spacing: 0.18em;
-    font-size: 13px;
+  .masthead-inner { max-width: 720px; margin: 0 auto; }
+  .masthead-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.14em;
     color: var(--gold);
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-weight: 600;
+    margin-bottom: 6px;
   }
-  header.masthead h1 {
-    margin: 0 0 8px;
-    font-size: 30px;
-    font-weight: 800;
+  .masthead-title {
+    font-family: "Noto Serif KR", serif;
+    font-weight: 900;
+    font-size: clamp(26px, 6vw, 36px);
+    margin: 0 0 14px;
+    text-wrap: balance;
   }
-  header.masthead .issue {
-    color: #c9d3e6;
-    font-size: 15px;
-  }
-
-  .toc {
+  .masthead-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-    margin: -22px auto 34px;
-    max-width: 860px;
-    padding: 0 20px;
-  }
-  .toc a {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 8px 16px;
+    gap: 8px 18px;
     font-size: 13px;
-    font-weight: 600;
-    color: var(--navy);
-    text-decoration: none;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    color: #c7d0e0;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    padding-top: 12px;
   }
+  .masthead-meta b { color: #f4f6fa; font-weight: 700; }
 
-  .month-heading {
+  /* ---- in-page contents strip ---- */
+  .contents-strip {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 44px 0 20px;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    font-size: 13px;
+    padding: 14px 20px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
   }
-  .month-heading .bar {
-    width: 6px;
-    height: 26px;
-    background: var(--gold);
-    border-radius: 3px;
-  }
-  .month-heading h2 {
-    font-size: 22px;
-    margin: 0;
-    color: var(--navy-deep);
-  }
+  .contents-strip a { color: var(--navy); text-decoration: none; font-weight: 600; }
+  .contents-strip span.sep { color: var(--line); }
 
-  article.story {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 26px 28px;
-    margin-bottom: 20px;
-    box-shadow: 0 1px 3px rgba(20, 30, 60, 0.05);
-  }
-  article.story .date-badge {
-    display: inline-block;
-    background: #eaf0fb;
-    color: var(--navy);
-    font-size: 12.5px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-  }
-  article.story h3 {
-    margin: 0 0 12px;
+  /* ---- keyword overview ---- */
+  .kw-section { padding: 28px 20px 6px; max-width: 720px; margin: 0 auto; }
+  .kw-heading {
+    font-family: "Noto Serif KR", serif;
+    font-weight: 800;
     font-size: 19px;
     color: var(--navy-deep);
+    margin: 0 0 4px;
+  }
+  .kw-sub { font-size: 12.5px; color: var(--ink-soft); margin-bottom: 14px; }
+  .kw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(146px, 1fr));
+    gap: 10px;
+  }
+  .kw-tile {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    border-radius: 5px;
+    padding: 12px 13px;
+    text-decoration: none;
+  }
+  .kw-tile-title {
+    font-weight: 800;
+    font-size: 15.5px;
+    color: var(--ink);
+    margin-bottom: 4px;
+    text-wrap: balance;
+  }
+  .kw-tile-hook { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+
+  /* ---- month section ---- */
+  .month {
+    display: flex;
+    gap: 16px;
+    margin-top: 44px;
+    scroll-margin-top: 12px;
+  }
+  .month-num {
+    font-family: "Noto Serif KR", serif;
+    font-weight: 900;
+    font-size: 40px;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 46px;
+  }
+  .month-body { flex: 1; min-width: 0; }
+  .month-label {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .month-title {
+    font-family: "Noto Serif KR", serif;
+    font-weight: 800;
+    font-size: 21px;
+    margin: 0 0 18px;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 10px;
+  }
+
+  /* ---- article ---- */
+  article.story {
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+    margin-top: 18px;
+  }
+  article.story:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+  .story-date {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+    background: var(--tag-bg);
+    padding: 2px 9px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    font-variant-numeric: tabular-nums;
+  }
+  article.story h3 {
+    font-size: 17px;
+    margin: 0 0 8px;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .tag {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--navy);
+    background: var(--tag-bg);
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  article.story p.lede {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 0 0 10px;
+    line-height: 1.55;
+    max-width: 62ch;
   }
   article.story p {
-    margin: 0 0 14px;
-    font-size: 15px;
-    color: var(--text);
+    margin: 0 0 12px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    max-width: 62ch;
   }
   article.story p:last-of-type { margin-bottom: 0; }
-  article.story figure {
-    margin: 16px 0 14px;
-  }
-  article.story img {
+
+  figure.shot { margin: 16px 0 4px; }
+  figure.shot img {
     width: 100%;
-    border-radius: 10px;
+    max-width: 100%;
+    display: block;
+    border-radius: 3px;
+  }
+  figure.shot figcaption {
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+  .shot-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 16px 0 4px;
+  }
+  .shot-row img {
+    flex: 1 1 46%;
+    min-width: 140px;
+    max-width: 100%;
+    border-radius: 3px;
     display: block;
   }
-  article.story .cap {
+  .shot-row + .cutline {
     font-size: 12.5px;
-    color: var(--muted);
+    font-style: italic;
+    color: var(--ink-soft);
     margin-top: 6px;
-    text-align: center;
   }
-  .note {
+
+  .flag-note {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
     font-size: 12.5px;
-    color: #b45309;
-    background: #fff7e6;
-    border: 1px solid #ffe4a8;
-    border-radius: 8px;
-    padding: 8px 12px;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 3px;
+    padding: 9px 11px;
     margin-top: 14px;
+    background: color-mix(in srgb, var(--gold) 10%, transparent);
   }
 
-  .photo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin: 16px 0 14px;
+  /* ---- activity ledger (3,4월) ---- */
+  .ledger {
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
   }
-  .photo-grid img { width: 100%; border-radius: 10px; display: block; }
-
-  .activity-box {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px 28px;
-    margin-bottom: 20px;
-    box-shadow: 0 1px 3px rgba(20, 30, 60, 0.05);
-  }
-  .activity-group { margin-bottom: 16px; }
-  .activity-group:last-child { margin-bottom: 0; }
-  .activity-group .label {
-    display: inline-block;
-    font-size: 12.5px;
+  .ledger-group { margin-bottom: 20px; }
+  .ledger-group:last-child { margin-bottom: 0; }
+  .ledger-label {
+    font-size: 12px;
     font-weight: 700;
-    color: #fff;
-    background: var(--navy);
-    padding: 3px 10px;
-    border-radius: 999px;
+    letter-spacing: 0.06em;
+    color: var(--navy);
     margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--line);
   }
-  ul.activity-list {
-    margin: 0;
-    padding-left: 0;
-    list-style: none;
-  }
-  ul.activity-list li {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: 8px;
-    font-size: 14.5px;
-  }
-  ul.activity-list li::before {
-    content: "";
-    position: absolute;
-    left: 4px;
-    top: 8px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-  }
-  ul.activity-list li .d {
+  table.ledger-table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  table.ledger-table td { padding: 5px 0; vertical-align: top; }
+  table.ledger-table td.d {
+    white-space: nowrap;
     font-weight: 700;
-    color: var(--navy-deep);
-    margin-right: 6px;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    padding-right: 14px;
+    width: 84px;
+  }
+  table.ledger-table td.t { color: var(--ink-soft); }
+
+  footer.colophon {
+    margin-top: 56px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
   }
 
-  footer {
-    text-align: center;
-    color: var(--muted);
-    font-size: 12.5px;
-    margin-top: 50px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
+  @media (max-width: 460px) {
+    .month { gap: 10px; }
+    .month-num { font-size: 30px; min-width: 34px; }
   }
 </style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;800;900&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="masthead-band">
+  <div class="masthead-inner">
+    <div class="masthead-eyebrow">한국전력기술 노동조합</div>
+    <h1 class="masthead-title">노조소식</h1>
+    <div class="masthead-meta">
+      <span><b>2026년 3·4월호</b></span>
+      <span>1~4월 주요 활동 모음</span>
+    </div>
+  </div>
+</div>
 
-<header class="masthead">
-  <div class="eyebrow">HANJEON GISUL LABOR UNION</div>
-  <h1>한국전력기술 노동조합 소식지</h1>
-  <div class="issue">2026년 3·4월호 · 1~4월 주요 활동 모음</div>
-</header>
+<div class="contents-strip">
+  <a href="#jan">1월</a><span class="sep">·</span>
+  <a href="#feb">2월</a><span class="sep">·</span>
+  <a href="#mar">3월 활동</a><span class="sep">·</span>
+  <a href="#apr">4월 활동</a>
+</div>
 
-<nav class="toc">
-  <a href="#jan">1월 활동</a>
-  <a href="#feb">2월 활동</a>
-  <a href="#mar">3월 활동 소식</a>
-  <a href="#apr">4월 활동 소식</a>
-</nav>
+<div class="kw-section">
+  <h2 class="kw-heading">이번 호, 키워드로 먼저</h2>
+  <div class="kw-sub">자세한 내용이 궁금하면 카드를 눌러 해당 기사로 이동하세요.</div>
+  <div class="kw-grid">
+    <a class="kw-tile" href="#story-hyeonjang">
+      <div class="kw-tile-title">사택 부족</div>
+      <div class="kw-tile-hook">울진 현장, 하버팰리스 추가 확보 필요성 제기</div>
+    </a>
+    <a class="kw-tile" href="#story-tonggeun">
+      <div class="kw-tile-title">통근버스 중단</div>
+      <div class="kw-tile-hook">정부 지침 반대 공동 기자회견 참여</div>
+    </a>
+    <a class="kw-tile" href="#story-hyeoksin">
+      <div class="kw-tile-title">혁신도시 공동대응</div>
+      <div class="kw-tile-hook">전국혁신도시노조협의회 정기회의</div>
+    </a>
+    <a class="kw-tile" href="#story-hyugye">
+      <div class="kw-tile-title">휴게공간 개선</div>
+      <div class="kw-tile-hook">28층 직원 휴게공간 조성 논의</div>
+    </a>
+    <a class="kw-tile" href="#story-sinipsawon">
+      <div class="kw-tile-title">신입사원 환영</div>
+      <div class="kw-tile-hook">직무입문교육 및 환영 단결식</div>
+    </a>
+    <a class="kw-tile" href="#story-suryeon">
+      <div class="kw-tile-title">조직 결속</div>
+      <div class="kw-tile-hook">제16대 운영·상집·감사 수련대회</div>
+    </a>
+    <a class="kw-tile" href="#apr">
+      <div class="kw-tile-title">3·4월 활동</div>
+      <div class="kw-tile-hook">대의원 선거·노사협의회 등 12건</div>
+    </a>
+  </div>
+</div>
 
-<div class="wrap">
+<div class="page">
 
-  <section id="jan">
-    <div class="month-heading"><span class="bar"></span><h2>1월 주요 활동</h2></div>
+  <div class="month" id="jan">
+    <div class="month-num">01</div>
+    <div class="month-body">
+      <div class="month-label">2026년 1월</div>
+      <h2 class="month-title">1월 주요 활동</h2>
 
-    <article class="story">
-      <span class="date-badge">1월 6일</span>
-      <h3>28층 직원 휴게공간 조성 논의</h3>
-      <p>노동조합은 28층에서 재무처와 함께 직원 휴게공간 조성과 관련한 회의에 참석했습니다. 이번 회의에서는 직원들이 보다 편안하게 휴식을 취할 수 있는 공간을 조성하기 위한 방안과 운영 방향에 대해 의견을 나눴습니다. 특히 직원들의 이용 편의성과 실질적인 휴식 환경 조성을 위해 필요한 사항들을 중심으로 다양한 의견이 논의되었습니다.</p>
-      <p>노동조합은 직원들의 근무 중 충분한 휴식을 취할 수 있는 환경이 조성될 수 있도록 조합원들의 의견을 지속적으로 전달하고, 실질적인 휴게공간 개선이 이루어질 수 있도록 노력하겠습니다.</p>
-    </article>
+      <article class="story" id="story-hyugye">
+        <span class="story-date">1월 6일</span>
+        <h3>28층 직원 휴게공간 조성 논의</h3>
+        <div class="tag-row"><span class="tag">#복지</span><span class="tag">#휴게공간</span></div>
+        <p class="lede">28층 직원 휴게공간, 이용 편의성 중심으로 조성 방향을 논의했습니다.</p>
+        <p>노동조합은 28층에서 재무처와 함께 직원 휴게공간 조성과 관련한 회의에 참석했습니다. 이번 회의에서는 직원들이 보다 편안하게 휴식을 취할 수 있는 공간을 조성하기 위한 방안과 운영 방향에 대해 의견을 나눴습니다. 특히 직원들의 이용 편의성과 실질적인 휴식 환경 조성을 위해 필요한 사항들을 중심으로 다양한 의견이 논의되었습니다.</p>
+        <p>노동조합은 직원들의 근무 중 충분한 휴식을 취할 수 있는 환경이 조성될 수 있도록 조합원들의 의견을 지속적으로 전달하고, 실질적인 휴게공간 개선이 이루어질 수 있도록 노력하겠습니다.</p>
+      </article>
 
-    <article class="story">
-      <span class="date-badge">1월 8일</span>
-      <h3>전국혁신도시협의회, 정기회의 참여</h3>
-      <p>노동조합은 전국혁신도시노동조합협의회 정기회의에 참석하여 혁신도시 공공기관 노동조합 간 주요 현안에 대해 논의했습니다. 이번 회의에서는 최근 정부가 혁신도시 수도권 출퇴근 버스 운영 중지 지침을 내린 것과 관련하여 각 기관 노동조합의 우려와 대응 방안이 집중적으로 논의되었습니다.</p>
-      <p>참석한 노동조합들은 해당 지침이 혁신도시 근무자들의 출퇴근 여건과 정주 환경에 미칠 영향에 대해 의견을 공유하고, 노동자들의 실질적인 생활 여건을 고려한 정책이 필요하다는 데 공감대를 형성했습니다. 또한 혁신도시 정주 여건 개선과 노동자들의 근무 환경 향상을 위해 노동조합 간 지속적인 정보 공유와 공동 대응을 이어가기로 했습니다.</p>
-      <p>우리 노동조합 역시 이번 논의 내용을 바탕으로 조합원들의 출퇴근 여건과 근무 환경에 미치는 영향을 면밀히 살펴보고, 필요한 대응 방안을 검토해 나갈 예정입니다.</p>
-      <figure>
-        <img src="photos/jeonguk-hyeoksindosi-hoeui.jpg" alt="전국혁신도시노동조합협의회 정기회의">
-        <div class="cap">전국혁신도시노동조합협의회 정기회의 (2026.1.8, 한국자산관리공사 대회의실)</div>
-      </figure>
-    </article>
+      <article class="story" id="story-hyeoksin">
+        <span class="story-date">1월 8일</span>
+        <h3>전국혁신도시협의회, 정기회의 참여</h3>
+        <div class="tag-row"><span class="tag">#혁신도시</span><span class="tag">#통근버스</span></div>
+        <p class="lede">수도권 통근버스 중단 지침에 혁신도시 노조 간 공동 대응을 합의했습니다.</p>
+        <p>노동조합은 전국혁신도시노동조합협의회 정기회의에 참석하여 혁신도시 공공기관 노동조합 간 주요 현안에 대해 논의했습니다. 이번 회의에서는 최근 정부가 혁신도시 수도권 출퇴근 버스 운영 중지 지침을 내린 것과 관련하여 각 기관 노동조합의 우려와 대응 방안이 집중적으로 논의되었습니다.</p>
+        <p>참석한 노동조합들은 해당 지침이 혁신도시 근무자들의 출퇴근 여건과 정주 환경에 미칠 영향에 대해 의견을 공유하고, 노동자들의 실질적인 생활 여건을 고려한 정책이 필요하다는 데 공감대를 형성했습니다. 또한 혁신도시 정주 여건 개선과 노동자들의 근무 환경 향상을 위해 노동조합 간 지속적인 정보 공유와 공동 대응을 이어가기로 했습니다.</p>
+        <p>우리 노동조합 역시 이번 논의 내용을 바탕으로 조합원들의 출퇴근 여건과 근무 환경에 미치는 영향을 면밀히 살펴보고, 필요한 대응 방안을 검토해 나갈 예정입니다.</p>
+        <figure class="shot">
+          <img src="photos/jeonguk-hyeoksindosi-hoeui.jpg" alt="전국혁신도시노동조합협의회 정기회의">
+          <figcaption>전국혁신도시노동조합협의회 정기회의 · 2026.1.8 · 한국자산관리공사 대회의실</figcaption>
+        </figure>
+      </article>
 
-    <article class="story">
-      <span class="date-badge">1월 15일</span>
-      <h3>신입사원 직무입문교육 및 환영 단결식 참석</h3>
-      <p>노동조합은 신입사원 직무입문교육 및 환영 단결식에 참석하여 새롭게 입사한 직원들을 환영하고 격려하는 시간을 가졌습니다. 이번 행사에서는 신입사원들이 조직에 잘 적응하고 동료들과 함께 성장할 수 있도록 서로 소통하는 시간을 가졌으며, 노동조합 역시 선배 구성원으로서 따뜻한 환영의 메시지를 전했습니다.</p>
-      <p>노동조합은 앞으로도 신입사원들이 안정적으로 조직에 정착하고, 건강한 조직문화 속에서 근무할 수 있도록 지속적인 관심과 지원을 이어갈 예정입니다.</p>
-      <figure>
-        <img src="photos/sinipsawon-gyoyuk.jpg" alt="2026년 신입사원 직무입문교육 '같이의 가치'">
-        <div class="cap">2026년 신입사원 직무입문교육 '같이의 가치' (2026.1.15)</div>
-      </figure>
-    </article>
+      <article class="story" id="story-sinipsawon">
+        <span class="story-date">1월 15일</span>
+        <h3>신입사원 직무입문교육 및 환영 단결식 참석</h3>
+        <div class="tag-row"><span class="tag">#신입사원</span><span class="tag">#환영행사</span></div>
+        <p class="lede">새로 입사한 직원들을 환영하고, 조직 적응 지원을 약속했습니다.</p>
+        <p>노동조합은 신입사원 직무입문교육 및 환영 단결식에 참석하여 새롭게 입사한 직원들을 환영하고 격려하는 시간을 가졌습니다. 이번 행사에서는 신입사원들이 조직에 잘 적응하고 동료들과 함께 성장할 수 있도록 서로 소통하는 시간을 가졌으며, 노동조합 역시 선배 구성원으로서 따뜻한 환영의 메시지를 전했습니다.</p>
+        <p>노동조합은 앞으로도 신입사원들이 안정적으로 조직에 정착하고, 건강한 조직문화 속에서 근무할 수 있도록 지속적인 관심과 지원을 이어갈 예정입니다.</p>
+        <figure class="shot">
+          <img src="photos/sinipsawon-gyoyuk.jpg" alt="2026년 신입사원 직무입문교육">
+          <figcaption>2026년 신입사원 직무입문교육 "같이의 가치" · 2026.1.15</figcaption>
+        </figure>
+      </article>
 
-    <article class="story">
-      <span class="date-badge">1월 26일~28일</span>
-      <h3>현장조합원 간담회 (대전·울진·월성·고리·한빛)</h3>
-      <p>노동조합은 대전, 울진, 월성, 고리, 한빛 현장을 방문하여 현장 조합원들과 간담회를 진행하고 근무환경 및 복지와 관련한 다양한 의견을 청취하였습니다. 공통적으로 이사 비용 처리 절차 간소화, 경조금 신청 절차 개선, 효도지원비 제도 운영 여부, 30분 단위 휴가 사용 제도 도입 계획 등 다양한 복지 및 제도 개선 사항에 대한 의견이 공유되었습니다.</p>
-      <p>특히 울진 현장에서는 사택과 관련하여, 현재 사용 중인 하버팰리스 일부 세대를 회사 사택으로 추가 확보할 필요성이 제기되었습니다. 향후 건설사업이 본격적으로 진행될 경우 인력 투입이 증가하면서 사택 부족 문제가 더욱 심화될 수 있다는 우려가 있었으며, 매년 사업부의 인원 투입 계획을 사전에 반영하여 필요한 사택을 미리 확보하는 등 보다 체계적인 관리가 필요하다는 의견이 나왔습니다. 또한 사택이 부족할 경우 삼척 지역을 대체 거주지로 활용하는 방안도 함께 논의되었으며, 이 경우 출퇴근 지원 방안 마련의 필요성도 제기되었습니다. 아울러 회사 사유로 사택을 이동해야 하는 경우 이사 휴가를 부여하는 등 제도적인 지원이 필요하다는 의견도 전달되었습니다.</p>
-      <p>현장 근무자의 본사 출장과 관련한 애로사항도 공유되었습니다. 현재는 현장에서 본사를 방문해야 하는 경우 개인 휴가를 사용해야 하는 상황이 발생하고 있어, 조합원들이 보다 원활하게 출장 업무를 수행할 수 있도록 별도의 출장 지원 체계 마련이 필요하다는 의견이 제기되었습니다. 한편 월성 현장에서는 사무실 건물의 기울어짐 문제와 냉난방 시설 용량 부족 등 근무환경과 관련된 개선 요구가 제기되었습니다. 특히 냉난방 설비의 용량이 부족해 여름철과 겨울철 근무 환경이 열악하다는 의견이 있었으며, 시설 점검 및 보완이 필요하다는 현장의 목소리가 전달되었습니다.</p>
-      <p>노동조합은 이번 간담회를 통해 제기된 현장 의견을 면밀히 검토하고, 조합원들의 근무환경과 복지 향상을 위해 관련 부서와 지속적으로 협의해 나갈 계획입니다.</p>
-      <div class="photo-grid">
-        <img src="photos/hyeonjang-gandamhoe-01.jpg" alt="현장조합원 간담회">
-        <img src="photos/hyeonjang-gandamhoe-02.jpg" alt="현장조합원 간담회">
-        <img src="photos/hyeonjang-gandamhoe-03.jpg" alt="현장조합원 간담회">
-        <img src="photos/hyeonjang-gandamhoe-04.jpg" alt="현장조합원 간담회">
-      </div>
-      <div class="cap">대전·울진·월성·고리·한빛 현장조합원 간담회 (2026.1.26~28)</div>
-      <div class="note">⚠ 원본 원고의 "하버팰리채"를 사택 명칭으로 보고 "하버팰리스"로 교정했습니다. 정확한 명칭인지 확인해 주세요.</div>
-    </article>
-  </section>
+      <article class="story" id="story-hyeonjang">
+        <span class="story-date">1월 26일~28일</span>
+        <h3>현장조합원 간담회 (대전·울진·월성·고리·한빛)</h3>
+        <div class="tag-row"><span class="tag">#현장간담회</span><span class="tag">#사택</span><span class="tag">#복지제도</span></div>
+        <p class="lede">사택 부족, 출장 지원, 근무환경 개선 요구를 현장에서 직접 수렴했습니다.</p>
+        <p>노동조합은 대전, 울진, 월성, 고리, 한빛 현장을 방문하여 현장 조합원들과 간담회를 진행하고 근무환경 및 복지와 관련한 다양한 의견을 청취하였습니다. 공통적으로 이사 비용 처리 절차 간소화, 경조금 신청 절차 개선, 효도지원비 제도 운영 여부, 30분 단위 휴가 사용 제도 도입 계획 등 다양한 복지 및 제도 개선 사항에 대한 의견이 공유되었습니다.</p>
+        <p>특히 울진 현장에서는 사택과 관련하여, 현재 사용 중인 하버팰리스 일부 세대를 회사 사택으로 추가 확보할 필요성이 제기되었습니다. 향후 건설사업이 본격적으로 진행될 경우 인력 투입이 증가하면서 사택 부족 문제가 더욱 심화될 수 있다는 우려가 있었으며, 매년 사업부의 인원 투입 계획을 사전에 반영하여 필요한 사택을 미리 확보하는 등 보다 체계적인 관리가 필요하다는 의견이 나왔습니다. 또한 사택이 부족할 경우 삼척 지역을 대체 거주지로 활용하는 방안도 함께 논의되었으며, 이 경우 출퇴근 지원 방안 마련의 필요성도 제기되었습니다. 아울러 회사 사유로 사택을 이동해야 하는 경우 이사 휴가를 부여하는 등 제도적인 지원이 필요하다는 의견도 전달되었습니다.</p>
+        <p>현장 근무자의 본사 출장과 관련한 애로사항도 공유되었습니다. 현재는 현장에서 본사를 방문해야 하는 경우 개인 휴가를 사용해야 하는 상황이 발생하고 있어, 조합원들이 보다 원활하게 출장 업무를 수행할 수 있도록 별도의 출장 지원 체계 마련이 필요하다는 의견이 제기되었습니다. 한편 월성 현장에서는 사무실 건물의 기울어짐 문제와 냉난방 시설 용량 부족 등 근무환경과 관련된 개선 요구가 제기되었습니다. 특히 냉난방 설비의 용량이 부족해 여름철과 겨울철 근무 환경이 열악하다는 의견이 있었으며, 시설 점검 및 보완이 필요하다는 현장의 목소리가 전달되었습니다.</p>
+        <p>노동조합은 이번 간담회를 통해 제기된 현장 의견을 면밀히 검토하고, 조합원들의 근무환경과 복지 향상을 위해 관련 부서와 지속적으로 협의해 나갈 계획입니다.</p>
+        <div class="shot-row">
+          <img src="photos/hyeonjang-gandamhoe-01.jpg" alt="현장조합원 간담회">
+          <img src="photos/hyeonjang-gandamhoe-02.jpg" alt="현장조합원 간담회">
+          <img src="photos/hyeonjang-gandamhoe-03.jpg" alt="현장조합원 간담회">
+          <img src="photos/hyeonjang-gandamhoe-04.jpg" alt="현장조합원 간담회">
+        </div>
+        <div class="cutline">대전·울진·월성·고리·한빛 현장조합원 간담회 · 2026.1.26~28</div>
+        <div class="flag-note">⚠ 원본 원고의 "하버팰리채"를 사택 명칭으로 보고 "하버팰리스"로 교정했습니다. 정확한 명칭인지 확인이 필요합니다.</div>
+      </article>
+    </div>
+  </div>
 
-  <section id="feb">
-    <div class="month-heading"><span class="bar"></span><h2>2월 주요 활동</h2></div>
+  <div class="month" id="feb">
+    <div class="month-num">02</div>
+    <div class="month-body">
+      <div class="month-label">2026년 2월</div>
+      <h2 class="month-title">2월 주요 활동</h2>
 
-    <article class="story">
-      <span class="date-badge">2월 9일</span>
-      <h3>일방적 통근버스 폐지 중단 관련 기자회견 참석</h3>
-      <p>노동조합은 전국혁신도시노동조합협의회와 함께 혁신도시 통근버스 중단 지침과 관련한 기자회견에 참석했습니다. 이번 기자회견은 정부의 수도권 통근버스 중단 지침으로 인해 혁신도시 근무자들의 출퇴근 여건이 악화될 수 있다는 우려를 알리고, 현실적인 대책 마련을 촉구하기 위해 진행되었습니다.</p>
-      <p>참석한 노동조합들은 혁신도시 정주 여건이 충분히 개선되지 않은 상황에서 통근버스 중단이 이루어질 경우 근무자들의 생활과 근무 환경에 큰 영향을 미칠 수 있다는 점을 강조하며, 정부에 합리적인 정책 보완을 요구했습니다. 우리 노동조합 역시 조합원들의 출퇴근 여건과 근무 환경을 고려한 정책이 마련될 수 있도록 지속적으로 대응해 나갈 예정입니다.</p>
-      <figure>
-        <img src="photos/gijahoegyeon-tonggeunbeoseu.jpg" alt="일방적 통근버스 폐지 중단 촉구 기자회견">
-        <div class="cap">양대노총 공공기관 노동조합 기자회견 (2026.2.9)</div>
-      </figure>
-    </article>
+      <article class="story" id="story-tonggeun">
+        <span class="story-date">2월 9일</span>
+        <h3>일방적 통근버스 폐지 중단 관련 기자회견 참석</h3>
+        <div class="tag-row"><span class="tag">#통근버스</span><span class="tag">#기자회견</span></div>
+        <p class="lede">통근버스 폐지 중단을 촉구하는 공동 기자회견에 참여했습니다.</p>
+        <p>노동조합은 전국혁신도시노동조합협의회와 함께 혁신도시 통근버스 중단 지침과 관련한 기자회견에 참석했습니다. 이번 기자회견은 정부의 수도권 통근버스 중단 지침으로 인해 혁신도시 근무자들의 출퇴근 여건이 악화될 수 있다는 우려를 알리고, 현실적인 대책 마련을 촉구하기 위해 진행되었습니다.</p>
+        <p>참석한 노동조합들은 혁신도시 정주 여건이 충분히 개선되지 않은 상황에서 통근버스 중단이 이루어질 경우 근무자들의 생활과 근무 환경에 큰 영향을 미칠 수 있다는 점을 강조하며, 정부에 합리적인 정책 보완을 요구했습니다. 우리 노동조합 역시 조합원들의 출퇴근 여건과 근무 환경을 고려한 정책이 마련될 수 있도록 지속적으로 대응해 나갈 예정입니다.</p>
+        <figure class="shot">
+          <img src="photos/gijahoegyeon-tonggeunbeoseu.jpg" alt="일방적 통근버스 폐지 중단 촉구 기자회견">
+          <figcaption>양대노총 공공기관 노동조합 기자회견 · 2026.2.9</figcaption>
+        </figure>
+      </article>
 
-    <article class="story">
-      <span class="date-badge">2월 26일</span>
-      <h3>2026년 상반기 운영·상집·감사 수련대회 개최</h3>
-      <p>노동조합은 운영위원, 상집 간부, 감사가 함께하는 수련대회를 개최했습니다. 이번 수련대회는 노동조합 주요 현안을 공유하고 향후 활동 방향을 논의하기 위해 마련되었으며, 간부 소통과 결속을 강화하는 뜻깊은 시간이 되었습니다.</p>
-      <p>참석자들은 노동조합 운영과 관련된 다양한 의견을 나누며, 조직의 역할과 책임을 다시 한번 되새겼으며, 조합원 권익 향상과 노동조합 발전을 위해 더욱 노력할 것을 다짐했습니다.</p>
-      <figure>
-        <img src="photos/suryeondaehoe-16dae.jpg" alt="제16대 운영·상집·감사 수련대회">
-        <div class="cap">제16대 운영·상집·감사 수련대회 (2026.2.26, 국립대한민국임시정부기념관)</div>
-      </figure>
-    </article>
-  </section>
+      <article class="story" id="story-suryeon">
+        <span class="story-date">2월 26일</span>
+        <h3>2026년 상반기 운영·상집·감사 수련대회 개최</h3>
+        <div class="tag-row"><span class="tag">#수련대회</span><span class="tag">#조직결속</span></div>
+        <p class="lede">운영·상집·감사가 한자리에 모여 활동 방향을 공유하고 결속을 다졌습니다.</p>
+        <p>노동조합은 운영위원, 상집 간부, 감사가 함께하는 수련대회를 개최했습니다. 이번 수련대회는 노동조합 주요 현안을 공유하고 향후 활동 방향을 논의하기 위해 마련되었으며, 간부 소통과 결속을 강화하는 뜻깊은 시간이 되었습니다.</p>
+        <p>참석자들은 노동조합 운영과 관련된 다양한 의견을 나누며, 조직의 역할과 책임을 다시 한번 되새겼으며, 조합원 권익 향상과 노동조합 발전을 위해 더욱 노력할 것을 다짐했습니다.</p>
+        <figure class="shot">
+          <img src="photos/suryeondaehoe-16dae.jpg" alt="제16대 운영·상집·감사 수련대회">
+          <figcaption>제16대 운영·상집·감사 수련대회 · 2026.2.26 · 국립대한민국임시정부기념관</figcaption>
+        </figure>
+      </article>
+    </div>
+  </div>
 
-  <section id="mar">
-    <div class="month-heading"><span class="bar"></span><h2>3월 활동 소식</h2></div>
-    <div class="activity-box">
-      <div class="activity-group">
-        <span class="label">대외 활동 소식</span>
-        <ul class="activity-list">
-          <li><span class="d">3/20</span>원노련 실무자 회의 (대협)</li>
-        </ul>
-      </div>
-      <div class="activity-group">
-        <span class="label">대내 활동 소식</span>
-        <ul class="activity-list">
-          <li><span class="d">3/12</span>월성 RET 근무공간 기울어짐 회의 (정책)</li>
-          <li><span class="d">3/19</span>경북혁신도시협의회, K-INNO FESTA 회의 (정책)</li>
-          <li><span class="d">3/24</span>제39대 대의원 선거 (대협)</li>
-          <li><span class="d">3/30~31</span>정기대의원대회 (정책)</li>
-        </ul>
+  <div class="month" id="mar">
+    <div class="month-num">03</div>
+    <div class="month-body">
+      <div class="month-label">2026년 3월</div>
+      <h2 class="month-title">3월 활동 소식</h2>
+      <div class="ledger">
+        <div class="ledger-group">
+          <div class="ledger-label">대외 활동 소식</div>
+          <table class="ledger-table">
+            <tr><td class="d">3/20</td><td class="t">원노련 실무자 회의 (대협)</td></tr>
+          </table>
+        </div>
+        <div class="ledger-group">
+          <div class="ledger-label">대내 활동 소식</div>
+          <table class="ledger-table">
+            <tr><td class="d">3/12</td><td class="t">월성 RET 근무공간 기울어짐 회의 (정책)</td></tr>
+            <tr><td class="d">3/19</td><td class="t">경북혁신도시협의회, K-INNO FESTA 회의 (정책)</td></tr>
+            <tr><td class="d">3/24</td><td class="t">제39대 대의원 선거 (대협)</td></tr>
+            <tr><td class="d">3/30~31</td><td class="t">정기대의원대회 (정책)</td></tr>
+          </table>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section id="apr">
-    <div class="month-heading"><span class="bar"></span><h2>4월 활동 소식</h2></div>
-    <div class="activity-box">
-      <div class="activity-group">
-        <span class="label">대외 활동 소식</span>
-        <ul class="activity-list">
-          <li><span class="d">4/2</span>[전혁노협] 2분기 정기회의 (정책)</li>
-          <li><span class="d">4/22</span>구미지청 고발 임단협 (대협)</li>
-        </ul>
-      </div>
-      <div class="activity-group">
-        <span class="label">대내 활동 소식</span>
-        <ul class="activity-list">
-          <li><span class="d">4/8</span>송언석 의원 간담회 (정책)</li>
-          <li><span class="d">4/13</span>신입사원 임용식 (정책)</li>
-          <li><span class="d">4/14</span>1분기 노사협의회 (정책)</li>
-          <li><span class="d">4/17</span>에신본부 MH 관련 회의 (정책)</li>
-          <li><span class="d">4/21</span>학경력 위원회 (복지)</li>
-          <li><span class="d">4/22</span>식당운영위원회 사전회의 (복지)</li>
-          <li><span class="d">4/27</span>대의원간담회 (대협)</li>
-        </ul>
+  <div class="month" id="apr">
+    <div class="month-num">04</div>
+    <div class="month-body">
+      <div class="month-label">2026년 4월</div>
+      <h2 class="month-title">4월 활동 소식</h2>
+      <div class="ledger">
+        <div class="ledger-group">
+          <div class="ledger-label">대외 활동 소식</div>
+          <table class="ledger-table">
+            <tr><td class="d">4/2</td><td class="t">[전혁노협] 2분기 정기회의 (정책)</td></tr>
+            <tr><td class="d">4/22</td><td class="t">구미지청 고발 임단협 (대협)</td></tr>
+          </table>
+        </div>
+        <div class="ledger-group">
+          <div class="ledger-label">대내 활동 소식</div>
+          <table class="ledger-table">
+            <tr><td class="d">4/8</td><td class="t">송언석 의원 간담회 (정책)</td></tr>
+            <tr><td class="d">4/13</td><td class="t">신입사원 임용식 (정책)</td></tr>
+            <tr><td class="d">4/14</td><td class="t">1분기 노사협의회 (정책)</td></tr>
+            <tr><td class="d">4/17</td><td class="t">에신본부 MH 관련 회의 (정책)</td></tr>
+            <tr><td class="d">4/21</td><td class="t">학경력 위원회 (복지)</td></tr>
+            <tr><td class="d">4/22</td><td class="t">식당운영위원회 사전회의 (복지)</td></tr>
+            <tr><td class="d">4/27</td><td class="t">대의원간담회 (대협)</td></tr>
+          </table>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <footer>
-    한국전력기술 노동조합 · 2026년 3·4월호 &nbsp;|&nbsp; 편집 초안 (원본 원고 기반 교정)
+  <footer class="colophon">
+    <span>한국전력기술 노동조합</span>
+    <span>2026년 3·4월호 · 편집 초안</span>
   </footer>
 </div>
+
 </body>
 </html>
